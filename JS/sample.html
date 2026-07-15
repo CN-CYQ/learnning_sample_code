@@ -44,20 +44,42 @@
         }
 
         .titlebar {
-            font-size: 24px;
-            color: rgb(255, 0, 0);
-            text-align: left;
+            display: inline;
+            
             line-height: 50px;
             position: absolute;
             width: 100%;
-            height: 60px;
+            height: 50px;
             bottom: 0;
             background-image: linear-gradient(to bottom, #f2f2f24f 10%, #000000);
             /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset; */
         }
+        .title {
+            float: left;
+            width: 70%;
+            font-size: 24px;
+            color: rgb(255, 0, 0);
+            text-align: left;
+        }
          
-        
+        .dote {
+            float: right;
+            width: 30%;
+            text-align: right;
+        }
+        .dotes{
+            width: 10px;
+            height: 10px;
+            background-color: rgb(223, 223, 223);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+        }
 
+        .active {
+            background-color: rgb(230, 18, 18);
+        }
+        
         
         
     </style>
@@ -71,12 +93,19 @@
             <div class="right-btn"> > </div>
 
             <div class="titlebar">
-                便宜大耍买，买买买
+                <div class="title">便宜大耍买，买买买</div>
+                <div class="dote" >
+                    <span class="dotes "></span>
+                    <span class="dotes"></span>
+                    <span class="dotes"></span>
+                    
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        const dotesCount = 3;
         const infoArr = [
             {
                 title: "便宜大耍买，买买买",
@@ -91,18 +120,22 @@
                 image: "../imgs/尚品汇3.png",
             },
         ]
+        let currentIndex = 0;
         const image = document.querySelector("img");
         const leftBtn = document.querySelector(".left-btn");
         const rightBtn = document.querySelector(".right-btn");
-        const titlebar = document.querySelector(".titlebar");
+        const titlebar = document.querySelector(".titlebar .title");
+        
 
-        let currentIndex = 0;
+        
         leftBtn.addEventListener("click", function () {
             if(currentIndex > 0) {
                 currentIndex--;
             }
             image.src = infoArr[currentIndex].image;
             titlebar.innerHTML = infoArr[currentIndex].title;
+            // dotes[currentIndex+1].classList.remove("active");
+            dotes.classList.add("active");
         })
         rightBtn.addEventListener("click", function () {
             if(currentIndex < infoArr.length - 1) {
@@ -110,16 +143,21 @@
             }
             image.src = infoArr[currentIndex].image;
             titlebar.innerHTML = infoArr[currentIndex].title;
+            // dotes[currentIndex-1].classList.remove("active");
+            dotes.classList.add("active");
         })
         setInterval(() => {
-            if(currentIndex < infoArr.length - 1) {
-                currentIndex++;
-            }
-            if(currentIndex == infoArr.length - 1) {
-                currentIndex = 0;
-            }
+            
+            
+            const dotes = document.querySelector(`.dotes:nth-child(${currentIndex})`);
             image.src = infoArr[currentIndex].image;
             titlebar.innerHTML = infoArr[currentIndex].title;
+            currentIndex++;
+            if(currentIndex == infoArr.length) {
+                currentIndex = 0;
+            }
+            console.log("【当前拿到的】", dotes,currentIndex)
+            dotes.classList.add("active");
         }, 3000);
         
 
