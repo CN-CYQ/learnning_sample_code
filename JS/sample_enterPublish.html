@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1" cellspacing="0" >
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" name="selectAll" id="0">
+                </th>
+                <th>序号</th>
+                <th>商品ID</th>
+                <th>商品名称</th>   
+                <th>商品价格</th>   
+                <th>商品库存</th>   
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" name="selectItem" id="1">
+                </td>
+                <td>1</td>
+                <td>132423</td>
+                <td>大香蕉</td>
+                <td>100</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>
+                    <input  type="checkbox" name="selectItem" id="2">
+                </td>
+                <td>2</td>
+                <td>132490</td>
+                <td>大木瓜</td>
+                <td>100</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>
+                    <input  type="checkbox" name="selectItem" id="3">
+                </td>
+                <td>3</td>
+                <td>132172</td>
+                <td>大西瓜</td>
+                <td>100</td>
+                <td>100</td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="submit-btn">提交</button>
+
+
+    <script>
+        let selectContent = [];
+        const inputAll = document.querySelectorAll("input");
+        const trAll = document.querySelectorAll("tr");
+        const submitBtn = document.querySelector(".submit-btn");
+
+        console.log(inputAll[2].id);
+        console.log(trAll[0].cells[2].textContent);
+
+
+        // 全选
+        inputAll[0].addEventListener("change",(e)=>{
+            if(!e.target.checked){
+                clearContent();
+            }else{
+                getAllContent(e.target.checked);
+            }
+
+        })
+        
+
+        submitBtn.addEventListener("click",()=>{
+            console.log(selectContent); 
+        })
+
+        // 清空内容
+        function clearContent() {
+            selectContent = [];
+            inputAll.forEach(item =>{
+                if(item.id !== 0) {
+                    item.checked = false;
+                }
+            })
+        }
+        // 获取所有商品信息
+        function getAllContent(change) {
+            console.log(change);
+            inputAll.forEach(item =>{
+                if(item.id !== 0) {
+                    selectContent.push(
+                        {
+                            id: trAll[item.id].cells[2].textContent,
+                            name: trAll[item.id].cells[3].textContent,
+                            price: trAll[item.id].cells[4].textContent,
+                            stock: trAll[item.id].cells[5].textContent,
+                        }
+                    );
+                    item.checked = change;
+                }
+                
+                
+            })
+        }
+    
+    </script>
+</body>
+</html>
