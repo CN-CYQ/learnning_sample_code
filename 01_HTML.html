@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+    <!-- 头部区域 -->
+    <head>
+        <!-- 配置字符编码为： UTF-8 -->
+        <meta charset="UTF-8">
+        <!-- 针对IE浏览器的一个兼容性设置 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- 针对移动段的配置，配置视口为：设备宽度，初始缩放比例为1.0 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- 配置网页关键字 -->  
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <!-- 配置网页描述 -->
+        <meta name="description" content="这是一个HTML基础的网页">
+         <!-- 针对搜索引擎爬虫设置，配置为：允许爬取 -->
+        <meta name="robots" content="index, follow">
+        <!-- 
+            index 允许爬虫爬取当前页面
+            follow 允许跟随链接
+            noindex 不允许爬取
+            nofollow 不允许跟随链接
+            all 允许爬取和跟随链接（默认值）
+            none 不允许爬取和跟随链接
+            noarchive 不允许爬取和跟随链接
+            
+            nocache 不允许爬取和跟随链接，并且不允许搜索引擎缓存页面
+
+        -->
+
+        <!-- 配置网页作者 -->
+        <meta name="author" content="Claude"> 
+         <!-- 配置网页版权 -->
+        <meta name="copyright" content="Copyright © 2023 Claude. All rights reserved.">
+         <!-- 配置网页主题 -->
+        <meta name="theme-color" content="#3b82f6">
+         <!-- 配置网页生成工具 -->
+        <meta name="generator" content="Claude">
+         <!-- 配置网页自动刷新，刷新时间为5秒 -->
+        <meta http-equiv="refresh" content="5; url=https://www.baidu.com">
+
+        <title>HTML基础</title>
+
+
+        <style>
+            
+
+
+
+            
+        </style>
+
+    </head>
+    
+    <!-- 内容区 -->
+    <body>
+        <h1 class="par1 par2">HTML基础</h1>
+
+        <!-- 跳转到其他网页 -->
+        <a href="https://www.baidu.com">跳转到百度</a>
+        <!-- 跳转到本地网页 -->
+        <a href="./02_HTML.html">跳转到02_HTML.html</a>
+        <!-- 跳转打开文件 -->
+        <a href="./自拍.jpg">跳转打开自拍.jpg</a>
+        <a href="./小电影.mp4">跳转打开小电影.mp4</a>
+        <a href="./动图.gif">跳转打开动图.gif</a>
+        <a href="./如何一夜暴富.pdf">跳转打开如何一夜暴富.pdf</a>
+
+        <!-- 浏览器可打开，但要强制触发下载 -->
+        <a href="./如何一夜暴富.pdf" download>跳转强制下载如何一夜暴富.pdf</a>
+
+        <!-- 第一种方式：a标签 + name属性 -->
+        <a href="#section1">跳转到第一部分</a>
+
+        <!-- 第二种方式：a标签 + id属性 -->
+        <a href="#section2">跳转到第二部分</a>
+
+
+        <!-- 跳转到 test1锚点 -->
+        <a href="#test1">跳转到 test1 锚点</a>
+
+        <!-- 跳转到 本页顶部-->
+        <a href="#">跳转到本页顶部</a>
+
+        <!-- 跳转到其他页面锚点————路径结尾加#-->
+        <a href="02_HTML.html#section1">跳转到02_HTML.html 第一部分</a>
+
+        <!-- 刷新本页面 -->
+        <a href="">刷新本页面</a>
+
+        <!-- 执行一段 js， javascript: ; -->
+        <a href="javascript:alert('hello')">执行 alert('hello')</a>
+
+        <!-- 唤起设备拨号 -->
+        <a href="tel:13800000000">打电话</a>
+
+        <!-- 唤起设备发邮箱 -->
+        <a href="mailto:138@qq.com">发邮箱</a>
+
+        <!-- 唤起设备短信 -->
+        <a href="sms:13800000000">发短信</a>
+
+        <ol>
+            <li>成都</li>
+            <li>上海</li>
+            <li>北京</li>
+            <li>广州</li>
+        </ol>
+        
+        <ul>
+            <li>成都</li>
+            <li>上海</li>
+            <li>北京</li>
+            <li>广州</li>
+        </ul>
+
+        <dl>
+            <dt>姓名</dt>
+            <dd>张三</dd>
+            <dt>年龄</dt>
+            <dd>18</dd>
+            <dt>性别</dt>
+            <dd>男</dd>
+        </dl>
+
+        <table border="1" width="500">
+            <caption>表格标题</caption>
+            <!-- 表头 -->
+            <thead align="left">
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                </tr>
+            </thead>
+            <!-- 表体 -->
+            <tbody>
+                <tr>
+                    <td>张三</td>
+                    <td>18</td>
+                    <td>男</td>
+                </tr>
+                <tr>
+                    <td>李四</td>
+                    <td>19</td>
+                    <td>女</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <th>人数</th>
+                <th></th> 
+                <th>3人</th>
+            </tfoot>
+           
+        </table>
+
+        <form action="https://www.baidu.com" method="get">
+            <label for="username">
+                <span>用户名：</span>
+                <input type="text" id="username" name="username"></input>
+            </label><br/>
+            <label for="password">
+                <span>密码：</span>
+                <input type="password" id="password" name="password"></input>
+            </label><br/>
+            <label for="submit">
+                <span>性别：</span>
+                <!-- 单选框  name属性相同为一组，只能选择一个选项 -->
+                <input type="radio" name="gender" value="男">男   
+                <input type="radio" name="gender" value="女">女
+            </label><br/>
+            <label for="hobby">
+                <span>爱好：</span>
+                <!-- 复选框  name属性相同为一组，可以选择多个选项 -->
+                <input type="checkbox" name="hobby" value="篮球">篮球
+                <input type="checkbox" name="hobby" value="足球">足球
+                <input type="checkbox" name="hobby" value="跑步">跑步
+            </label><br/>
+            <label>
+                邮箱：
+                <input type="email" name="email"></input>
+            </label><br/>
+            <label>
+                年龄：
+                <input type="number" name="age"></input>
+            </label><br/>
+            <label>
+                手机号：
+                <input type="tel" name="phone"></input>
+            </label><br/>
+            <label>
+                个人网站：
+                <input type="url" name="website"></input>
+            </label><br/>
+            <label>
+                搜索框
+                <input type="search" name="search"></input>
+            </label><br/>
+            <label>
+                出生年月：
+                <input type="datetime-local" name="birthday"></input>
+            </label><br/>
+            <label>
+                个人简介：
+                <textarea name="intro" rows="4" cols="30" maxlength="100"></textarea>
+            </label><br/>
+            
+            <label for="city">
+                <span>城市：</span>
+                <select name="city" id="city">
+                    <option value="成都">成都</option>
+                    <option value="上海">上海</option>
+                    <option value="北京">北京</option>
+                    <option value="广州">广州</option>
+                    <option value="深圳">深圳</option>
+                    <option value="其他">其他</option>
+                </select>
+            </label>
+
+            <label for="submit">
+                <span>提交：</span>
+                <input type="submit" value="提交"></input>
+            </label><br/>
+
+
+           
+
+        </form>
+
+        <hr/>
+        <form action="#" method="post">
+            <!-- ====== 0. 隐藏域（页面上不可见） ====== -->
+            <input type="hidden" name="userId" value="10086">
+            <input type="hidden" name="token" value="abc123xyz">
+        
+            <!-- ====== 1. 基础文本类 ====== -->
+            <fieldset>
+                <legend>基础文本输入</legend>
+                <div>
+                    <label for="userName">text (姓名)</label>
+                    <input type="text" id="userName" name="userName" placeholder="请输入姓名" value="张三">
+                </div>
+                <div>
+                    <label for="userPwd">password (密码)</label>
+                    <input type="password" id="userPwd" name="userPwd" placeholder="请输入密码" value="123456">
+                </div>
+                <div>
+                    <input type="checkbox" id="agree" name="agree" value="yes">
+                    <label for="agree">我已阅读并同意（点击文字勾选）</label>
+                </div>
+            </fieldset>
+        
+            <!-- ====== 2. HTML5 专用键盘与校验 ====== -->
+            <fieldset>
+                <legend>移动端友好 & 格式校验</legend>
+                <div>
+                    <label for="email">email</label>
+                    <input type="email" id="email" name="email" placeholder="example@mail.com">
+                </div>
+                <div>
+                    <label for="tel">tel (电话)</label>
+                    <input type="tel" id="tel" name="tel" placeholder="13800138000">
+                </div>
+                <div>
+                    <label for="url">url (网址)</label>
+                    <input type="url" id="url" name="url" placeholder="https://example.com">
+                </div>
+                <div>
+                    <label for="search">search (搜索)</label>
+                    <input type="search" id="search" name="search" placeholder="搜你所需...">
+                </div>
+                <div>
+                    <label for="num">number (数字)</label>
+                    <input type="number" id="num" name="num" min="1" max="100" step="5" value="10">
+                </div>
+            </fieldset>
+        
+            <!-- ====== 3. 日期 / 滑块 / 颜色 ====== -->
+            <fieldset>
+                <legend>日期 / 滑块 / 取色</legend>
+                <div>
+                    <label for="birth">date (日期)</label>
+                    <input type="date" id="birth" name="birth">
+                </div>
+                <div>
+                    <label for="meet">time (时间)</label>
+                    <input type="time" id="meet" name="meet">
+                </div>
+                <div>
+                    <label for="appt">datetime-local</label>
+                    <input type="datetime-local" id="appt" name="appt">
+                </div>
+                <div>
+                    <label for="volume">range (音量)</label>
+                    <input type="range" id="volume" name="volume" min="0" max="100" value="60">
+                    <output for="volume">60</output>
+                </div>
+                <div>
+                    <label for="color">color (取色器)</label>
+                    <input type="color" id="color" name="color" value="#3b82f6">
+                </div>
+            </fieldset>
+        
+            <!-- ====== 4. 选择类（多选/单选/下拉/补全） ====== -->
+            <fieldset>
+                <legend>选择与勾选</legend>
+                <!-- 复选框多选 -->
+                <div>
+                    <label>checkbox (多选)</label>
+                    <input type="checkbox" id="hobby1" name="hobby" value="read">
+                    <label for="hobby1">阅读</label>
+                    <input type="checkbox" id="hobby2" name="hobby" value="music">
+                    <label for="hobby2">音乐</label>
+                    <input type="checkbox" id="hobby3" name="hobby" value="sport">
+                    <label for="hobby3">运动</label>
+                </div>
+                <!-- 单选框 -->
+                <div>
+                    <label>radio (单选)</label>
+                    <input type="radio" id="gender1" name="gender" value="male">
+                    <label for="gender1">男</label>
+                    <input type="radio" id="gender2" name="gender" value="female">
+                    <label for="gender2">女</label>
+                    <input type="radio" id="gender3" name="gender" value="other" checked>
+                    <label for="gender3">其他</label>
+                </div>
+                <!-- 下拉选择框 -->
+                <div>
+                    <label for="city">select (下拉)</label>
+                    <select id="city" name="city">
+                        <optgroup label="国内">
+                            <option value="bj">北京</option>
+                            <option value="sh" selected>上海</option>
+                            <option value="gz">广州</option>
+                        </optgroup>
+                        <optgroup label="国外">
+                            <option value="ny">纽约</option>
+                            <option value="ld">伦敦</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <!-- 输入补全列表 -->
+                <div>
+                    <label for="browser">datalist (补全)</label>
+                    <input list="browserList" id="browser" name="browser" placeholder="输入或选择浏览器">
+                    <datalist id="browsers">
+                        <option value="Chrome">
+                        <option value="Edge">
+                        <option value="Firefox">
+                        <option value="Safari">
+                        <option value="Opera">
+                    </datalist>
+                    <span>（可手动输入，也可下拉选择）</span>
+                </div>
+            </fieldset>
+        
+            <!-- ====== 5. 多行文本与文件上传 ====== -->
+            <fieldset>
+                <legend>长文本 & 文件上传</legend>
+                <div>
+                    <label for="desc">textarea (备注)</label>
+                    <textarea id="desc" name="desc" rows="3" placeholder="请输入详细描述...">这是默认的多行文本内容。</textarea>
+                </div>
+                <div>
+                    <label for="fileUpload">file (文件)</label>
+                    <input type="file" id="fileUpload" name="fileUpload" accept=".jpg,.png,.pdf" multiple>
+                    <span>（支持按住Ctrl多选）</span>
+                </div>
+            </fieldset>
+        
+            <!-- ====== 6. 按钮军团 ====== -->
+            <fieldset>
+                <legend>交互按钮</legend>
+                <div>
+                    <!-- input 系列的按钮 -->
+                    <input type="submit" value="提交 (submit)">
+                    <input type="reset" value="重置 (reset)">
+                    <input type="button" value="普通按钮 (button)">
+                    <!-- button 标签（内部可嵌套其他元素） -->
+                    <button type="button">⭐ 自定义按钮</button>
+                </div>
+                <div>
+                    <span>提示：点击“提交”会刷新页面；点击“重置”会清空当前表单内容。</span>
+                </div>
+            </fieldset>
+        
+            <!-- 显示隐藏域的值（仅作为文字提示） -->
+            <div>
+                <span>隐藏域传值：userId=10086, token=abc123xyz</span>
+            </div>
+        </form>
+
+        <!-- 嵌入一个网页 -->
+        <iframe src="https://www.baidu.com/" frameborder="0"></iframe>
+
+        <!-- 嵌入广告网页 -->
+        <iframe src="https://www.baidu.com/" frameborder="0"></iframe>
+
+        <!-- 嵌入其他本地文件内容 -->
+        <iframe src="./小米仔.png" frameborder="0"></iframe>
+
+        <!-- 与超链接的 target 属性结合使用 -->
+        <a href="https://www.toutiao.com" target="tt">在新标签页打开抖音</a>
+        <a href="https://www.taobao.com" target="tt">在当前标签页打开淘宝</a>
+        <iframe name="tt" frameborder="0"></iframe>
+
+        <!-- 与表单的target属性配合使用 -->
+        <form action="https://so.toutiao.com/search" target="container" >
+            <input type="text" name="wd" placeholder="抖音搜索...">
+            <input type="submit" value="搜索">
+        </form>
+        <iframe name="container" frameborder="0"></iframe>
+
+    </body>
+</html>

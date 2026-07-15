@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 300px;
+            height: 200px;
+            position: relative;
+            transform-style: flat;
+            overflow: hidden;
+        }
+        .box{
+            width: 300px;
+            height: 200px;  
+        }
+        .img{
+            background-image: url("./小米仔.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            transition: 1s all ease;
+        }
+
+        .text {
+            position: absolute;
+            height: 200px;
+            width: 300px;
+            line-height: 200px;
+            top: 0;
+            left: 0;
+            text-align: center;
+            
+            font-size: 70px;
+            color: transparent;
+            transition: 1s all ease;
+            /* 文字不可选中 */
+            user-select: none;
+        }
+        .container:hover .img {
+            transform: scale(2) rotateZ(40deg);
+        }
+        .container:hover .text {
+            cursor: pointer;
+            color: white;
+            background-color: black;
+            opacity: 0.5;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box img"></div>
+        <div class="box text">
+            上海
+        </div>
+    </div>
+    
+</body>
+</html>

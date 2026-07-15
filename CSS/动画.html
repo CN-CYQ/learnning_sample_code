@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        .outer{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+        .inner{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            /* 动画名称 */
+            animation-name: move;
+            /* 动画持续时间 */
+            animation-duration: 1s;
+            /* 动画延迟时间 */
+            animation-delay: 1s;
+            /* 动画循环次数 */
+            /* animation-iteration-count: infinite; */
+
+            ;
+
+        }
+        /* 动画关键帧 ——简单方式定义*/
+        @keyframes move{
+            from{
+                transform: translate(0, 0);
+            }
+            to{
+                transform: translate(200px, 200px);
+            }
+        }
+        @keyframes move{
+            0%{
+                transform: translate(0, 0);
+            }
+            20% {
+                transform: translate(200px, 0);
+            }
+            50% {
+                transform: translate(200px, 200px);
+            }
+            100%{
+                transform: translate(0, 0);
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .outer {
+                width: 200px;
+                height: 200px;
+            }
+            .inner {
+                width: 50px;
+                height: 50px;
+            }
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">
+
+        </div>
+    </div>
+</body>
+</html>

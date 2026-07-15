@@ -1,0 +1,402 @@
+
+<html lang="zh-CN">
+
+    <!-- 头部区域 -->
+    <head>
+        <link rel="stylesheet" href="./位置_外部样式.css"></link>
+
+
+        <style>
+            .bobb{
+                font-size: 21px;
+                color: red;
+                background-color: antiquewhite;
+            }
+            .par1{
+                color: red
+            }
+            .par2{
+
+                font-size: 30px;
+            }
+            .par1,
+            .par2,
+            .bobb {
+                font-size: 21px;
+                color: red;
+                background-color: antiquewhite;
+            }
+
+            /* 选中ul中所有li */
+            ul li {
+                color: blue;
+                font-size: 20px;
+            }
+
+            /* 选中ul中所有li中的 a，若 ul中只有一个a标签，中间的li 也可省去 */
+            ul li a {
+                color: green;
+                font-size: 18px;
+            }
+
+            /* 选中类名为subject元素中的所有li */
+            .subject li {
+                color: purple;
+                font-size: 16px;
+            }
+
+            /* 选中类名为subject元素中的所有类名为front-end的li */
+            .subject .front-end li {
+                color: orange;
+                font-size: 14px;
+            }
+
+            /* div中的子代 a 元素 */
+            div > a {
+                font-size: 23px;
+            }
+
+            /* 类名为persons的元素中的子代 a 元素 */
+            .persons > a {
+                color: aquamarine;
+            }
+
+            /* 选中div后紧紧相邻的兄弟p元素（睡在我下铺的兄弟）—— 相邻兄弟选择器 + */
+            div + p {
+                color: blueviolet;
+                font-size: 20px;
+            }
+
+            /* 选中div后所有的兄弟p元素（睡在我下铺的所有兄弟）—— 通用兄弟选择器 ~ */
+            div ~ p {
+                color: brown;
+                font-size: 18px;
+            }
+
+            /* 属性选择器 */
+            /* 第一种写法： 选中具有title属性的元素*/
+            [title] {
+                color: red;
+            }
+
+            /* 第二种写法： 选中具有title属性的元素，且属性值为atguigul的元素*/
+            [title="atguigul"] {
+                color: blue;
+            }
+
+            /*第三种写法：选中有title属性的元素，且属性值以a开头的元素 */
+            [title^="a"] {
+                color: green;
+            }
+
+            /*第四种写法：选中有title属性的元素，且属性值以a结尾的元素 */
+            [title$="a"] {
+                color: green;
+            }
+            /*第四种写法：选中有title属性的元素，且属性值包含u的元素 */
+            [title*="u"] {
+                color: green;
+            }
+
+            /* 选中的是没有访问过的a元素 */
+            a:link {
+                color: red;
+            }
+
+            /* 选中的是访问过的a元素 */
+            a:visited {
+                color: blue;
+            }
+            /* link 和 visited 是 a标签独有的，hover和active是所有标签都有*/
+
+            /* 选中的是鼠标悬浮状态的a元素 */
+            a:hover {
+                color: green;       
+            }
+
+            /* 选中的是鼠标激活状态的a元素 */
+            a:active {
+                color: yellow;
+            }
+
+            /* 输入框获取焦点 */
+            /* focus状态只有内容输入类的标签才有的状态 */
+            input:focus {
+                background-color: red;
+            }
+
+
+
+            /* 选中的时 div的第一个子p元素 ———— 看结构1*/
+            div > p:first-child {
+                color: red;
+            }
+
+            /* 选中的是 div 的第一个儿子p元素 —— 看结构2 */
+            div > p:first-child{
+                color: red;
+            }
+            
+            /* 选中的是 div 的后代p元素，且p的父亲是谁无所谓，但p必须是其父亲的第一个儿子 —— 看结构3 */
+            div  p:first-child {
+                color: red;
+            }
+            
+            /* 选中的是p元素，且p的父亲是谁无所谓，但p必须是其父亲的第一个儿子 —— 看结构3 */
+            p:first-child {
+                color: red;
+            }
+            
+            /* 选中的是 div 的子 p元素，但排除类名为fail的元素 */
+            div > p:not(.fail) {
+                color: red;
+            }
+            /* 选中的是 div 的儿子p元素，但排除title属性值为atguigul_1的元素 */
+            div > p:not([title="atguigul_1"]) {
+                color: red;
+            }
+            /* 选中的是 div 的儿子p元素，但排除第一个儿子p元素 */
+            div > p:not(:first-child) {
+                color: red;
+            }
+
+            /* 选中的是勾选的复选框或单选框 */
+            input:checked {
+                background-color: red;
+            }
+
+            input:disabled{
+                background-color: gray;
+            }
+            input:enabled{
+                background-color: green;
+            }
+
+            div:target{
+                background-color: red;
+            }
+
+            /* 选中的是 lang属性值为en的div元素 */
+            div:lang(en){
+                background-color: rgb(16, 146, 245);
+            }
+            /* 什么标签不重要，只要 lang属性值为zh-CN的元素 */
+            :lang(zh-CN){
+                background-color: rgb(16, 146, 245);
+            }
+
+
+
+            /* 选中的是 div 第一个字母 */
+            body>div:first-child::first-letter{
+                color: red;
+                font-size: 30px;
+            }
+            /* 选中的是 div 第一行文字 */
+            body>div:first-child::first-line{
+                color: rgb(17, 212, 95);
+            }
+            /* 选中的是 div 选中的文字 */
+            body>div:first-child::selection{
+                color: rgb(0, 94, 255);
+                background-color: rgb(114, 212, 17);
+            }
+            /* 选中的是 input 输入框的占位符文字 */
+            input::placeholder{
+                color: rgb(255, 0, 0);
+            }
+            /* 选中的是 p 元素最开始的位置，随后创建一个子元素*/
+
+            span::before{
+                content: "";
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                background-color: burlywood;
+            }
+             /* 选中的是 p 元素最最后的位置，随后创建一个子元素*/
+            p::after{
+                content: "元";
+                 
+            }
+
+            div {
+            font-size: 40px;
+            }
+
+            .atguigu1 {
+                /*上划的绿色虚线 */
+                text-decoration:overline dotted
+            }
+
+            .atguigu2 {
+                /* 下划的红色波浪线 */
+                text-decoration: underline wavy #ff0000;
+            }
+            .atguigu3 {
+                /* 删除线 */
+                text-decoration: line-through;
+            }
+            .atguigu4, ins, del {
+                font-size: 40px;
+                /* 没有各种线 */
+                text-decoration: none;
+                align-items: center;
+                justify-content: center;
+                line-height: normal;
+            }
+
+            ul {
+                /* 列表符号 */
+                list-style-type: square;
+                /* 列表符号的位置 */
+                list-style-position: inside;
+                /* 自定义列表符号 */
+                list-style-image: url("../小米仔.png") 40px;
+                /* 复合属性 */
+                list-style: square inside url("../小米仔.png");
+            }
+            li {
+                background-color: aqua;
+            }
+
+            table {
+                /* 控制表格列宽 */
+                table-layout: fixed;
+                /* 表格单元格的间距 (生效的前提是,不能合并边框)*/
+                border-spacing: 10px;
+                /* 表格合并相邻单元格的边框 */
+                border-collapse: collapse;
+                /* 隐藏没有内容的单元格(生效的前提是,不能合并边框) */
+                empty-cells: hide;
+                /* 设置表格标题位置 */
+                caption-side: top;
+
+            }
+            td, th {
+                border: #ff0000 1px solid;
+            }
+            div {
+                width: 600px;
+                height: 800px;
+
+
+
+                /* 设置背景颜色  默认值 transparent*/
+                background-color: red;
+                /* 设置背景图片 */
+                /* background-image: url("../小米仔.png"); */
+                /* 设置背景图片的重复方式 */
+                background-repeat: no-repeat;
+                /* 设置背景图片的位置---第一种写法: 关键词 , 值: 水平方向位置 垂直方向位置 ,默认值为 left top ,可选值: left top, right top, left bottom, right bottom, center top, center bottom, center center */
+                /* background-position: center top; */
+                /* 设置背景图片的位置---第二种写法: 像素值 , 相对的是左上角,水平向右为x轴,垂直向下为y轴 */
+                background-position: 100px 200px;
+                /* 背景复合属性, 不规定 数量 顺序 */
+                /* background: url("../小米仔.png") no-repeat 100px 200px; */
+            }
+
+            div{
+                background-color: rgb(255, 168, 127);
+                cursor: url("../小米仔.png"),pointer;
+            }
+
+
+        </style>
+    </head>
+    
+    <!-- 内容区 -->
+    <body>
+        <div>不能把</div>
+
+        <table>
+            <caption>表格标题</caption>
+            <!-- 表头 -->
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                </tr>
+            </thead>
+            <!-- 表体 -->
+            <tbody>
+                <tr>
+                    <td>张三</td>
+                    <td>18</td>
+                    <td>男</td>
+                </tr>
+                <tr>
+                    <td>李四</td>
+                    <td>19</td>
+                    <td>女</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <th>人数</th>
+                <th></th> 
+                <th>3人</th>
+            </tfoot>
+           
+        </table>
+        <hr>
+
+        <ul>
+            <li>一行内容弄1</li>
+            <li>一行内容弄2</li>
+            <li>一行内容弄3</li>
+        </ul>
+
+        <div>hjabsd asdhbas asj sadas asd asd asd a f wege trh tjtu er we ws dvd f dtjh rtj t  e wqf wf we fw efw ef wef wafaw  dvdf hdfhwe</div>
+        <input type="text" placeholder="请输入">
+        <span>不能把</span>
+        <p>199.00</p>
+        <p>199.00</p>
+        <p>199.00</p>
+
+
+        <div>大家好</div>
+        <div lang="en">哈哈哈哈</div>
+        <p>泥好</p>
+        <div>哈哈哈哈</div>
+
+        <input type="checkbox">
+        <input type="radio" value="男">
+        <input type="radio" value="女">
+
+        <div>
+            <p>张三：98</p>
+            <p>李四：90</p>
+            <p>王柒：85</p>
+            <p class="fail" title="atguigul_1">王五：55</p>
+            <p class="fail" title="atguigul_2">赵六：46</p>
+        </div>
+
+
+        <p>这是一段文字</p>
+
+        <!-- 结构1 -->
+        <div>
+            <p>张三</p>
+            <p>李四</p>
+            <p>王五</p>
+        </div>
+
+        <!-- 结构2 -->
+        <div>
+            <span>张三</span>
+            <p>李四</p>
+            <p>王五</p>
+        </div>
+
+        <!-- 结构3 -->
+        <p>测试1</p>
+        <div>
+            <marquee>
+                <p>张三</p>
+            </marquee>
+            <p>李四</p>
+            <p>王五</p>
+        </div>
+    </body>
+</html>
