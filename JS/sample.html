@@ -80,6 +80,8 @@
             background-color: rgb(230, 18, 18);
         }
         
+
+        
         
         
     </style>
@@ -95,14 +97,17 @@
             <div class="titlebar">
                 <div class="title">便宜大耍买，买买买</div>
                 <div class="dote" >
-                    <span class="dotes "></span>
+                    <span class="dotes active"></span>
                     <span class="dotes"></span>
                     <span class="dotes"></span>
                     
                 </div>
             </div>
         </div>
+
+        
     </div>
+
 
     <script>
         const dotesCount = 3;
@@ -129,36 +134,49 @@
 
         
         leftBtn.addEventListener("click", function () {
-            if(currentIndex > 0) {
-                currentIndex--;
+            if(currentIndex <= 0) {
+                currentIndex = infoArr.length - 1;
             }
             image.src = infoArr[currentIndex].image;
             titlebar.innerHTML = infoArr[currentIndex].title;
-            // dotes[currentIndex+1].classList.remove("active");
-            dotes.classList.add("active");
+            // 清除第一个active
+            document.querySelector(`.dote .active`).classList.remove('active');
+            // 给当前图片原点添加active类
+            document.querySelector(`.dote span:nth-child(${currentIndex+1})`).classList.add('active');
         })
         rightBtn.addEventListener("click", function () {
-            if(currentIndex < infoArr.length - 1) {
-                currentIndex++;
-            }
-            image.src = infoArr[currentIndex].image;
-            titlebar.innerHTML = infoArr[currentIndex].title;
-            // dotes[currentIndex-1].classList.remove("active");
-            dotes.classList.add("active");
-        })
-        setInterval(() => {
             
-            
-            const dotes = document.querySelector(`.dotes:nth-child(${currentIndex})`);
-            image.src = infoArr[currentIndex].image;
-            titlebar.innerHTML = infoArr[currentIndex].title;
-            currentIndex++;
-            if(currentIndex == infoArr.length) {
+            if(currentIndex >= infoArr.length) {
                 currentIndex = 0;
             }
-            console.log("【当前拿到的】", dotes,currentIndex)
-            dotes.classList.add("active");
+
+            image.src = infoArr[currentIndex].image;
+            titlebar.innerHTML = infoArr[currentIndex].title;
+            // 清除第一个active
+            document.querySelector(`.dote .active`).classList.remove('active');
+            // 给当前图片原点添加active类
+            document.querySelector(`.dote span:nth-child(${currentIndex+1})`).classList.add('active');
+            
+        })
+        setInterval(() => {
+            currentIndex++;
+            rightBtn.click()
+            
+            // const dotes = document.querySelector(`.dotes:nth-child(${currentIndex})`);
+            // image.src = infoArr[currentIndex].image;
+            // titlebar.innerHTML = infoArr[currentIndex].title;
+            // currentIndex++;
+            // if(currentIndex == infoArr.length ) {
+            //     currentIndex = 0;
+            // }
+            // console.log("【当前拿到的】", dotes,currentIndex)
+            // dotes.classList.add("active");
         }, 3000);
+
+        image.addEventListener('mouseover', function () {
+            
+            clearInterval(timer);
+        })
         
 
     </script>
