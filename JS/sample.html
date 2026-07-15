@@ -126,6 +126,8 @@
             },
         ]
         let currentIndex = 0;
+
+        const container = document.querySelector(".container");
         const image = document.querySelector("img");
         const leftBtn = document.querySelector(".left-btn");
         const rightBtn = document.querySelector(".right-btn");
@@ -159,26 +161,20 @@
             document.querySelector(`.dote span:nth-child(${currentIndex+1})`).classList.add('active');
             
         })
-        // setInterval(() => {
-        //     
-        //     rightBtn.click()
+        let timer = setInterval(() => {
             
-        //     // const dotes = document.querySelector(`.dotes:nth-child(${currentIndex})`);
-        //     // image.src = infoArr[currentIndex].image;
-        //     // titlebar.innerHTML = infoArr[currentIndex].title;
-        //     // currentIndex++;
-        //     // if(currentIndex == infoArr.length ) {
-        //     //     currentIndex = 0;
-        //     // }
-        //     // console.log("【当前拿到的】", dotes,currentIndex)
-        //     // dotes.classList.add("active");
-        // }, 3000);
+            rightBtn.click()
+        }, 3000);
 
-        image.addEventListener('mouseenter', function () {
+        container.addEventListener('mouseover', function () {
             
             clearInterval(timer);
         })
-        
+        container.addEventListener('mouseout', function () {
+            timer = setInterval(() => {
+                rightBtn.click()
+            }, 3000);
+        })
 
     </script>
 </body>
