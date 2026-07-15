@@ -77,11 +77,18 @@
         const rightBtn = document.querySelector(".right-btn");
         let currentIndex = 0;
         leftBtn.addEventListener("click", function () {
-            image.src = infoArr[0].image;
+            if(currentIndex > 0) {
+                currentIndex--;
+            }
+            image.src = infoArr[currentIndex].image;
         })
         rightBtn.addEventListener("click", function () {
-            image.src = infoArr[1].image;
+            if(currentIndex < infoArr.length - 1) {
+                currentIndex++;
+            }
+            image.src = infoArr[currentIndex].image;
         })
+        
         
 
     </script>
