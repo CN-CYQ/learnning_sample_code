@@ -43,6 +43,21 @@
             display: block;
         }
 
+        .titlebar {
+            font-size: 24px;
+            color: rgb(255, 0, 0);
+            text-align: left;
+            line-height: 50px;
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            bottom: 0;
+            background-image: linear-gradient(to bottom, #f2f2f24f 10%, #000000);
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset; */
+        }
+         
+        
+
         
         
     </style>
@@ -54,6 +69,10 @@
         <div class="cover">
             <div class="left-btn"> < </div>
             <div class="right-btn"> > </div>
+
+            <div class="titlebar">
+                便宜大耍买，买买买
+            </div>
         </div>
     </div>
 
@@ -64,31 +83,44 @@
                 image: "../imgs/尚品汇1.png",
             },
             {
-                title: "便宜大耍买，买买买",
+                title: "尚品汇2.png",
                 image: "../imgs/尚品汇2.png",
             },
             {
-                title: "便宜大耍买，买买买",
+                title: "尚品汇3.png",
                 image: "../imgs/尚品汇3.png",
             },
         ]
         const image = document.querySelector("img");
         const leftBtn = document.querySelector(".left-btn");
         const rightBtn = document.querySelector(".right-btn");
+        const titlebar = document.querySelector(".titlebar");
+
         let currentIndex = 0;
         leftBtn.addEventListener("click", function () {
             if(currentIndex > 0) {
                 currentIndex--;
             }
             image.src = infoArr[currentIndex].image;
+            titlebar.innerHTML = infoArr[currentIndex].title;
         })
         rightBtn.addEventListener("click", function () {
             if(currentIndex < infoArr.length - 1) {
                 currentIndex++;
             }
             image.src = infoArr[currentIndex].image;
+            titlebar.innerHTML = infoArr[currentIndex].title;
         })
-        
+        setInterval(() => {
+            if(currentIndex < infoArr.length - 1) {
+                currentIndex++;
+            }
+            if(currentIndex == infoArr.length - 1) {
+                currentIndex = 0;
+            }
+            image.src = infoArr[currentIndex].image;
+            titlebar.innerHTML = infoArr[currentIndex].title;
+        }, 3000);
         
 
     </script>
