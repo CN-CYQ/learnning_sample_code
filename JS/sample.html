@@ -134,7 +134,8 @@
 
         
         leftBtn.addEventListener("click", function () {
-            if(currentIndex <= 0) {
+            currentIndex--;
+            if(currentIndex < 0) {
                 currentIndex = infoArr.length - 1;
             }
             image.src = infoArr[currentIndex].image;
@@ -145,7 +146,7 @@
             document.querySelector(`.dote span:nth-child(${currentIndex+1})`).classList.add('active');
         })
         rightBtn.addEventListener("click", function () {
-            
+            currentIndex++;
             if(currentIndex >= infoArr.length) {
                 currentIndex = 0;
             }
@@ -158,22 +159,22 @@
             document.querySelector(`.dote span:nth-child(${currentIndex+1})`).classList.add('active');
             
         })
-        setInterval(() => {
-            currentIndex++;
-            rightBtn.click()
+        // setInterval(() => {
+        //     
+        //     rightBtn.click()
             
-            // const dotes = document.querySelector(`.dotes:nth-child(${currentIndex})`);
-            // image.src = infoArr[currentIndex].image;
-            // titlebar.innerHTML = infoArr[currentIndex].title;
-            // currentIndex++;
-            // if(currentIndex == infoArr.length ) {
-            //     currentIndex = 0;
-            // }
-            // console.log("【当前拿到的】", dotes,currentIndex)
-            // dotes.classList.add("active");
-        }, 3000);
+        //     // const dotes = document.querySelector(`.dotes:nth-child(${currentIndex})`);
+        //     // image.src = infoArr[currentIndex].image;
+        //     // titlebar.innerHTML = infoArr[currentIndex].title;
+        //     // currentIndex++;
+        //     // if(currentIndex == infoArr.length ) {
+        //     //     currentIndex = 0;
+        //     // }
+        //     // console.log("【当前拿到的】", dotes,currentIndex)
+        //     // dotes.classList.add("active");
+        // }, 3000);
 
-        image.addEventListener('mouseover', function () {
+        image.addEventListener('mouseenter', function () {
             
             clearInterval(timer);
         })
