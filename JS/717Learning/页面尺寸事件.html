@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>aaaaa12312123123123312aaaa</div>
+    <script>
+        window.addEventListener('resize', () => {
+            console.log("页面尺寸变化");
+        })
+
+        // 检测屏幕宽度
+        window.addEventListener('resize', () => {
+            // console.log("屏幕宽度变化",window.innerWidth);
+            let w = document.documentElement.clientWidth;
+            console.log("屏幕宽度变化",w);
+        })
+
+        // 获取div宽高
+        const div = document.querySelector("div");
+        console.log(div.clientWidth, div.clientHeight);
+
+    </script>
+</body>
+</html>
