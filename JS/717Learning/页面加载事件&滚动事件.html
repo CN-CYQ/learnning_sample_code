@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            height: 2000px;
+        }   
+        div {
+            height: 200px;
+            width: 100px;
+            overflow: scroll;
+            /* background-color: rgba(2, 183, 114, 0.5); */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+        很多文字很多文字
+    </div>
+
+    <script>
+        // // 页面加载事件
+        // window.addEventListener("load", () => {
+        //     console.log("页面加载完成");
+        // })
+
+        // img.addEventListener('load', () => {
+        //     console.log("图片加载完成");
+        // })
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     console.log("文档加载完成");
+        // })
+
+        // 滚动事件
+        // 监听页面滚动事件
+        window.addEventListener('scroll', (e) => {
+            // 事件对象获取滚动距离
+            // console.log("滚动事件触发",parseInt(e.target.scrollTop));
+
+            console.log(parseInt(document.documentElement.scrollTop));
+        })
+
+        // 监听某个元素的滚动事件
+        const div1 = document.querySelector('div');
+        div1.addEventListener('scroll', (e) => {
+            console.log("滚动事件触发",parseInt(e.target.scrollTop));
+            div1.style.backgroundColor = `rgba(2, 183, 114, ${e.target.scrollTop / 1000})`;
+        })
+    </script>
+    
+</body>
+</html>
