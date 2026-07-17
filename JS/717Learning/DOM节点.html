@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="yeye">
+        <div class="father">
+            <div class="son1">
+                <div class="baby">asdasdasdas</div>
+            </div>
+            <div class="son2">哈哈哈哈</div>
+            <div class="son3">亲吻青蛙打网球</div>
+        </div>  
+    </div>
+
+    <script>
+        /**
+         * 查找节点
+         * 
+         * **/
+        // 查找父节点
+        const son1 = document.querySelector('.son1')
+        const son3 = document.querySelector('.son3')
+        console.log(son1.parentNode); // 返回DOM对象
+        
+        console.log(son1.parentNode.children); // 哈哈哈哈
+        console.log(son1.parentNode.children[1].innerHTML); // 哈哈哈哈
+        //拿到yeye
+        /**
+         * 用祖先节点获取其子节点时，会返回所有子节点，包括文本节点和注释节点
+         * 换行符也会被作为文本节点返回
+         */
+        console.log(son1.parentNode.parentNode.childNodes); // yeye
+        //获取son1的兄弟节点
+        console.log(son1.nextElementSibling); // son2
+        console.log(son3.previousElementSibling); // son2
+
+
+        /**
+         * 创建节点
+         * **/
+        // 创建元素节点
+        const div = document.createElement('div')
+        console.log(div); // <div></div>
+        // 将元素插入到父节点中（最后一个子元素后面）
+        div.innerHTML = '我是新创建的div'
+        // son1.parentNode.appendChild(div)
+        // 插入父元素中某个子元素前面
+        son1.parentNode.insertBefore(div, son3)
+
+        // 克隆节点
+        const divClone = son1.cloneNode(true)
+        // divClone.innerHTML = '我是新克隆的'
+        console.log(">??",divClone); // <div class="son1"></div>
+        // 插入到父元素中
+        son1.parentNode.insertBefore(divClone, son1)
+
+
+        // 删除节点
+        const father = document.querySelector('.father')
+        // father.removeChild(divClone)
+
+    </script>
+    
+</body>
+</html>
