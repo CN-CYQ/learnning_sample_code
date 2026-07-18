@@ -18,6 +18,20 @@
         localStorage.removeItem('name')
         // 清空所有数据
         localStorage.clear()
+
+        // 复杂数据类型存储
+        const obj = {
+            name: '张三',
+            age: 18
+        }
+        // 存储复杂数据类型
+        localStorage.setItem('obj', JSON.stringify(obj))
+        // 获取复杂数据类型
+        console.log(JSON.parse(localStorage.getItem('obj')));
+        // 删除复杂数据类型
+        localStorage.removeItem('obj')
+        // 清空所有数据
+        localStorage.clear()
     </script>
     
 </body>
