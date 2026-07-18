@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="box1" draggable="true">
+    </div>
+
+    <script>
+        const box1 = document.querySelector('.box1')
+        // 触摸开始事件：touchstart
+        box1.addEventListener('touchstart', function(){
+            console.log('touchstart');
+        })
+        // 触摸移动事件：touchmove
+        box1.addEventListener('touchmove', function(){
+            console.log('touchmove');
+        })
+        // 触摸结束事件：touchend
+        box1.addEventListener('touchend', function(){
+            console.log('touchend');
+        })
+        // 触摸取消事件：touchcancel
+        box1.addEventListener('touchcancel', function(){
+            console.log('touchcancel');
+        })
+    </script>
+</body>
+</html>
