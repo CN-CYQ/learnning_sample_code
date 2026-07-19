@@ -53,20 +53,20 @@
 
 
         // 移入主相片 显示放大镜
-        imgBox.children[0].addEventListener('mouseenter', function (e) {
+        imgBox.children[0].addEventListener('mouseover', function (e) {
             scaleContent.style.backgroundImage = `url(${imgBox.children[0].src})`;
             imgBox.children[1].style.display = 'block';
             const element = document.elementFromPoint(e.clientX, e.clientY);
             // console.log(e.pageX, e.pageY);
-            console.log(e.pageX, e.pageY);
+            // console.log(e.pageX, e.pageY);
             // console.log(imgBox.children[1].style.left, imgBox.children[1].style.top);
             imgBox.children[1].style.left = e.pageX - 50 + 'px';
             imgBox.children[1].style.top = e.pageY - 50 + 'px';
-
+            console.log(imgBox.children[1], imgBox.children[1]);
             scaleContent.style.backgroundPosition = `-${e.offsetX - 38}px -${e.offsetY - 38}px`;
             
         })
-        imgBox.children[0].addEventListener('mouseleave', function () {
+        imgBox.children[0].addEventListener('mouseout', function () {
             // scaleImg.src = imgMain.src;
             imgBox.children[1].style.display = 'none';
         })

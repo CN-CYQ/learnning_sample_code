@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片放大镜 - 优化版</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="magnifier-wrapper">
+            <div class="img-box">
+                <img class="img-main" src="../../../sources/640.jpg" alt="主图">
+                <div class="lens"></div>
+            </div>
+            <div class="result"></div>
+        </div>
+        <div class="thumbnails">
+            <img src="../../../sources/640.jpg" alt="缩略图1" class="active">
+            <img src="../../../sources/2126e013d3f9ba08b5.jpg" alt="缩略图2">
+            <img src="../../../sources/d207c09dedb93846b5.jpg" alt="缩略图3">
+            <img src="../../../sources/feaf9abd5c1cd19086.jpg" alt="缩略图4">
+            <img src="../../../sources/小米仔.png" alt="小米仔">
+            <img src="../../../sources/微信图片_2026-05-30_004634_562.jpg" alt="微信图片">
+        </div>
+    </div>
+    <script>
+        (function () {
+            var LENS_SIZE = 120;
+            var RESULT_SIZE = 360;
+            var MAGNIFICATION = 3;
+
+            var imgBox = document.querySelector('.img-box');
+            var imgMain = document.querySelector('.img-main');
+            var lens = document.querySelector('.lens');
+            var result = document.querySelector('.result');
+            var thumbs = document.querySelectorAll('.thumbnails img');
+
+            function init() {
+                if (imgMain.complete) {
+                    setupMagnifier();
+                } else {
+                    imgMain.addEventListener('load', setupMagnifier);
+                }
+                thumbs.forEach(function (thumb) {
+                    thumb.addEventListener('click', switchImage);
+                });
+            }
+
+            function setupMagnifier() {
+                var displayW = imgBox.clientWidth;
+                var displayH = imgBox.clientHeight;
+                result.style.backgroundImage = 'url(' + imgMain.src + ')';
+                result.style.backgroundSize = (displayW * MAGNIFICATION) + 'px ' + (displayH * MAGNIFICATION) + 'px';
+
+                imgBox.addEventListener('mouseenter', function () {
+                    lens.style.display = 'block';
+                    result.style.display = 'block';
+                });
+                imgBox.addEventListener('mouseleave', function () {
+                    lens.style.display = 'none';
+                    result.style.display = 'none';
+                });
+                imgBox.addEventListener('mousemove', function (e) {
+                    updateMagnifier(e);
+                });
+            }
+
+            function updateMagnifier(e) {
+                var rect = imgBox.getBoundingClientRect();
+                var mx = e.clientX - rect.left;
+                var my = e.clientY - rect.top;
+                var halfLens = LENS_SIZE / 2;
+                var lensLeft = mx - halfLens;
+                var lensTop = my - halfLens;
+                var maxLeft = imgBox.clientWidth - LENS_SIZE;
+                var maxTop = imgBox.clientHeight - LENS_SIZE;
+                lensLeft = Math.max(0, Math.min(lensLeft, maxLeft));
+                lensTop = Math.max(0, Math.min(lensTop, maxTop));
+                lens.style.left = lensLeft + 'px';
+                lens.style.top = lensTop + 'px';
+                var bgX = -(lensLeft * MAGNIFICATION);
+                var bgY = -(lensTop * MAGNIFICATION);
+                result.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
+            }
+
+            function switchImage() {
+                thumbs.forEach(function (t) { t.classList.remove('active'); });
+                this.classList.add('active');
+                imgMain.src = this.src;
+                function onLoad() {
+                    var displayW = imgBox.clientWidth;
+                    var displayH = imgBox.clientHeight;
+                    result.style.backgroundImage = 'url(' + imgMain.src + ')';
+                    result.style.backgroundSize = (displayW * MAGNIFICATION) + 'px ' + (displayH * MAGNIFICATION) + 'px';
+                    imgMain.removeEventListener('load', onLoad);
+                }
+                if (imgMain.complete) onLoad();
+                else imgMain.addEventListener('load', onLoad);
+                lens.style.display = 'none';
+                result.style.display = 'none';
+            }
+
+            var resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    result.style.backgroundSize = (imgBox.clientWidth * MAGNIFICATION) + 'px ' + (imgBox.clientHeight * MAGNIFICATION) + 'px';
+                    result.style.backgroundImage = 'url(' + imgMain.src + ')';
+                }, 200);
+            });
+
+            init();
+        })();
+    </script>
+</body>
+</html>
