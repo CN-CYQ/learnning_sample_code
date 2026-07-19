@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组map方法
+        const arr = ['red', 'green', 'blue', 'yellow', 'orange']
+        const newArr = arr.map(function(item, index){
+            console.log(item) //数组元素
+            console.log(index) //数组元素的索引
+            return item+'颜色'
+        })
+        console.log(newArr)
+    </script>
+</body>
+</html>
