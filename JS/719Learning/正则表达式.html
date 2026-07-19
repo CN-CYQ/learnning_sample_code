@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 正则表达式：用于匹配字符串中的模式的规则
+        // 语法：/模式/标志位
+        // 模式：要匹配的字符或字符组合
+        // 标志位：用于指定匹配的类型，如全局匹配、忽略大小写等  
+        // 例如：/a/i //忽略大小写匹配a ，全局匹配  
+        // 例如：/a/g //全局匹配a
+        // 例如：/a/gi //忽略大小写全局匹配a
+        
+        // exec方法：用于在字符串中搜索匹配的正则表达式
+        // 语法：正则表达式.exec(字符串)
+        // 返回值：一个数组，包含匹配的子字符串
+        const str = 'hello world'
+        const reg = /hello/i
+        const res = reg.exec(str)
+        console.log(res) //['hello', index: 0, input: 'hello world', groups: undefined]
+
+        // 元字符
+        // 1.边界符
+        // ^：匹配字符串的开头
+        // $：匹配字符串的结尾  
+        console.log(/哈/.test('哈')) //true
+        console.log(/^哈/.test('哈')) //false
+        console.log(/哈$/.test('哈')) //true
+        console.log(/^哈$/.test('哈')) //true
+
+        console.log(/^哈{4,}$/.test('哈哈'))
+        console.log(/^哈{4,}$/.test('哈哈哈'))
+        console.log(/^哈{4,}$/.test('哈哈哈哈'))
+        console.log(/^哈{4,}$/.test('哈哈哈哈哈'))
+        console.log(/^哈{4,}$/.test('哈哈哈哈哈哈'))
+
+        // 量词 {n,m} 逗号左右两侧千万不能有空格
+        console.log(/^哈{4,6}$/.test('哈'))
+        console.log(/^哈{4,6}$/.test('哈哈'))
+        console.log(/^哈{4,6}$/.test('哈哈哈'))
+        console.log(/^哈{4,6}$/.test('哈哈哈哈'))
+        console.log(/^哈{4,6}$/.test('哈哈哈哈哈'))
+        console.log(/^哈{4,6}$/.test('哈哈哈哈哈哈'))
+        console.log(/^哈{4,6}$/.test('哈哈哈哈哈哈哈'))
+
+        // 字符类
+        // 只要中括号里面的任意字符出现都返回为true
+        console.log(/[abc]/.test('andy')) //true
+        console.log(/[abc]/.test('baby')) //true
+        console.log(/[abc]/.test('cry')) //true
+        console.log(/[abc]/.test('die')) //true
+
+
+    </script>
+</body>
+</html>
