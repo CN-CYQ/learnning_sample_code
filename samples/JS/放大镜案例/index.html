@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="img-box">
+            <img class="img-main" src="./sources/小图.png" alt="">
+            <!-- 放大镜盒子 -->
+            <div class="scale-box" draggable="true">
+                
+            </div>
+            <!-- <img class="scale-img" src="./sources/大图.png" alt=""> -->
+        </div>
+
+        <!-- 图片列表 -->
+         <div class="img-list">
+            <img src="../../../sources/feaf9abd5c1cd19086.jpg" alt="">
+            <img src="../../../sources/2126e013d3f9ba08b5.jpg" alt="">
+            <img src="../../../sources/d207c09dedb93846b5.jpg" alt="">
+            <img src="../../../sources/小米仔.png" alt="">
+         </div>
+
+    </div>
+
+    <script>
+        const imgMain = document.querySelector('.img-main');
+        const imgList = document.querySelectorAll('.img-list img');
+        const scaleImg = document.querySelector('.scale-img');
+        const scaleBox = document.querySelector('.scale-box');
+        // const imgList = document.querySelectorAll('.img-list img');
+        window.addEventListener('load', function () { 
+            imgMain.src = imgList[0].src;
+            // console.log("hhhhh",imgMain.offsetTop, imgMain.offsetLeft);
+            scaleBox.style.top = imgMain.offsetTop + 'px';
+            scaleBox.style.left = imgMain.offsetLeft + 'px';
+        })  
+        imgList.forEach(item => {
+            item.addEventListener('mouseenter', function () {
+                imgMain.src = item.src;
+                
+            })
+        })  
+
+        // 拖动放大镜
+        // scaleBox.addEventListener('dragstart', function (e) {
+        //     // e.dataTransfer.setData('text/plain', e.target.id);
+        //     console.log( e.x, e.y);
+        //     scaleBox.style.top = e.target.offsetTop + 'px';
+        //     scaleBox.style.left = e.target.offsetLeft + 'px';
+        // })
+        // 移入主相片 显示放大镜
+        imgMain.addEventListener('mousemove', function (e) {
+            document.querySelector('.scale-box').style.display = 'block';
+            const element = document.elementFromPoint(e.clientX, e.clientY);
+            // console.log(e.pageX, e.pageY);
+            console.log(e.clientX, e.clientY);
+            scaleBox.style.left = e.clientX - 50 + 'px';
+            scaleBox.style.top = e.clientY- 50 + 'px';
+        })
+        imgMain.addEventListener('mouseleave', function () {
+            // scaleImg.src = imgMain.src;
+            document.querySelector('.scale-box').style.display = 'none';
+        })
+
+    </script>
+    
+
+    
+</body>
+</html>
