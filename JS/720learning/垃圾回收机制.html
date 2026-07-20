@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 为变量分配内存
+        const age = 18
+
+        // 为对象分配内存
+        const obj = {
+        age: 19
+        }
+        // 为函数分配内存
+        function fn() {
+            const age = 18
+            console. log(age)
+        }
+        
+
+        // 引用计算方法
+        let arr = [1, 2, 3]
+        arr = null;
+
+        // 对象嵌套引用 导致内存泄漏
+        function fn() {
+            let o1 = {}
+            let o2 = {}
+            o1.a = o2
+            o2.a = o1
+            return'引用计数无法回收'
+        }
+        fn()
+
+        // 闭包
+        function counter(){
+            let num = 0;
+            return function(){
+                num++;
+                return num;
+            }
+        }
+
+        // 常见闭包形式  外部可访问使用内部函数变量
+        let count = counter()
+        console.log(count())
+        console.log(count())
+        console.log(count())
+        console.log(count())
+    </script>
+</body>
+</html>
