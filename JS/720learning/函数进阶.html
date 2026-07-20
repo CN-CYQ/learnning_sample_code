@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 函数提升
+        // 函数提升是指在函数调用之前，函数的定义会被提升到代码的顶部
+        fn()    
+        function fn() { 
+            console.log('hello world')
+        }
+
+        // 函数表达式，必须先声明和赋值， 后调用 否则报错
+        fun() // 报错
+        let fun = function() {
+            console.log('hello world')
+        }
+
+
+        // 函数 动态参数
+        function sum() {
+            let s = 0;
+            console.log(arguments)
+            for(let i = 0; i < arguments.length; i++) {
+                s += arguments[i]
+            }
+            return s;
+        }
+        // 调用求和方法
+        console.log(sum(1, 2, 3, 4, 5))
+        console.log(sum(1, 2, 3))
+
+
+        // 函数 剩余参数
+        function sum2(a,b,...args) {
+            let s = 0;
+            for(let i = 0; i < args.length; i++) {
+                s += args[i]
+            }
+            return s;
+        }
+        // 调用求和方法
+        console.log(sum2(1, 2, 3, 4, 5))
+        console.log(sum2(1, 2, 3))
+        
+    </script>
+</body>
+</html>
