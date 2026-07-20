@@ -46,7 +46,48 @@
         // 调用求和方法
         console.log(sum2(1, 2, 3, 4, 5))
         console.log(sum2(1, 2, 3))
+
+        // 箭头函数
+        // 基本写法
+        let fn3 = () => {
+            console.log('hello world')
+        }
+
+        //若形参只有一个参数，小括号可省略
+        let fn4 = a => {
+            console.log(a)
+        }
+        // 只有一行代码时，可省去大括号，且return 也可省略
+        let fn5 = a => a * 2    
+        console.log(fn5(2))
+        //箭头函数可直接返回一个对象
+        let fn6 = a => ({res: a})
+        console.log(fn6(2))
         
+        
+        // 箭头函数参数
+        let fn7 = (a,b, ...arr) => {
+            arr.push(1)
+            for(let i = 0; i < arr.length; i++) {
+                s += arr[i]
+            }
+            return s;
+        }
+
+        // 箭头函数this
+        let fn8 = () => {
+            console.log(this)
+        }
+        fn8()
+
+        const obj = {
+            name: '张三',
+            sayHi: ()=>{
+                console.log(this) // 指向window
+            }
+        }
+        obj.sayHi()
+
     </script>
 </body>
 </html>
