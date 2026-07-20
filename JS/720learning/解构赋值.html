@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 解构赋值
+        // 批量声明变量 a, b, c
+        // 右侧数组元素，按左侧变量顺序赋值给左侧变量
+        let arr = [1, 2, 3]
+        let [a, b, c] = arr
+        console.log(a, b, c)
+
+        // 两值交换
+        let d = 10
+        let f = 20
+        [d, f] = [f, d]
+        console.log(d, f)
+
+        // 变量少，参数多
+        let [a1, b2] = [100, 200, 300]
+        console.log(a1, b2)
+
+        // 剩余参数 变量少，参数多
+        let [a3, ...b3] = [100, 200, 300, 400, 500]
+        console.log(a3, b3) // 100 [200, 300, 400, 500]
+
+        // 默认参数 处理undefined
+        let [a4, b4, d5 = 1000] = [100, 200]
+        console.log(a4, b4) // 100 200
+
+
+    </script>
+</body>
+</html>
