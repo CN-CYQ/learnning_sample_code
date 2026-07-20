@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图片放大镜 - 优化版</title>
     <link rel="stylesheet" href="./index.css">
 </head>
+
 <body>
     <div class="container">
         <div class="magnifier-wrapper">
@@ -28,6 +30,7 @@
         (function () {
             var LENS_SIZE = 120;
             var RESULT_SIZE = 360;
+            // 放大镜倍数
             var MAGNIFICATION = 3;
 
             var imgBox = document.querySelector('.img-box');
@@ -36,17 +39,21 @@
             var result = document.querySelector('.result');
             var thumbs = document.querySelectorAll('.thumbnails img');
 
-            function init() {
+            function init() { 
+                // 等待主图加载完成
                 if (imgMain.complete) {
                     setupMagnifier();
                 } else {
+                    // 否则监听加载完成事件
                     imgMain.addEventListener('load', setupMagnifier);
                 }
+                // 缩略图切换
                 thumbs.forEach(function (thumb) {
                     thumb.addEventListener('click', switchImage);
                 });
             }
 
+            // 初始化放大镜
             function setupMagnifier() {
                 var displayW = imgBox.clientWidth;
                 var displayH = imgBox.clientHeight;
@@ -59,28 +66,37 @@
                 });
                 imgBox.addEventListener('mouseleave', function () {
                     lens.style.display = 'none';
-                    result.style.display = 'none';
+                    setTimeout(()=>{
+                        result.style.display = 'none';
+                    },300)
                 });
+                // 鼠标移动事件
                 imgBox.addEventListener('mousemove', function (e) {
                     updateMagnifier(e);
                 });
             }
 
+            // 更新放大镜位置
             function updateMagnifier(e) {
+                // 计算鼠标位置
                 var rect = imgBox.getBoundingClientRect();
                 var mx = e.clientX - rect.left;
                 var my = e.clientY - rect.top;
-                var halfLens = LENS_SIZE / 2;
-                var lensLeft = mx - halfLens;
-                var lensTop = my - halfLens;
-                var maxLeft = imgBox.clientWidth - LENS_SIZE;
-                var maxTop = imgBox.clientHeight - LENS_SIZE;
-                lensLeft = Math.max(0, Math.min(lensLeft, maxLeft));
-                lensTop = Math.max(0, Math.min(lensTop, maxTop));
+                // 计算放大镜位置 （限制在图片范围内）
+                // 计算放大镜半径
+                var halfLens = LENS_SIZE / 2; 
+                var lensLeft = mx - halfLens; // 放大镜左侧偏移量
+                var lensTop = my - halfLens; // 放大镜顶部偏移量
+                var maxLeft = imgBox.clientWidth - LENS_SIZE; // 最大左偏移量
+                var maxTop = imgBox.clientHeight - LENS_SIZE; // 最大上偏移量
+                lensLeft = Math.max(0, Math.min(lensLeft, maxLeft)); // 限制在图片范围内
+                lensTop = Math.max(0, Math.min(lensTop, maxTop)); // 限制在图片范围内
                 lens.style.left = lensLeft + 'px';
                 lens.style.top = lensTop + 'px';
-                var bgX = -(lensLeft * MAGNIFICATION);
-                var bgY = -(lensTop * MAGNIFICATION);
+
+                // 计算背景图片位置
+                var bgX = -(lensLeft * MAGNIFICATION); // 背景图片左侧偏移量
+                var bgY = -(lensTop * MAGNIFICATION); // 背景图片顶部偏移量
                 result.style.backgroundPosition = bgX + 'px ' + bgY + 'px';
             }
 
@@ -101,9 +117,10 @@
                 result.style.display = 'none';
             }
 
+            // 监听窗口变化
             var resizeTimer;
             window.addEventListener('resize', function () {
-                clearTimeout(resizeTimer);
+                clearTimeout(resizeTimer); // 防止重复触发
                 resizeTimer = setTimeout(function () {
                     result.style.backgroundSize = (imgBox.clientWidth * MAGNIFICATION) + 'px ' + (imgBox.clientHeight * MAGNIFICATION) + 'px';
                     result.style.backgroundImage = 'url(' + imgMain.src + ')';
@@ -114,4 +131,5 @@
         })();
     </script>
 </body>
+
 </html>
