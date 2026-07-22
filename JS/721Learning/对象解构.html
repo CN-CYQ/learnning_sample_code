@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /// 对象解构赋值
+        let obj = {
+            name: '张三',
+            age: 18,
+            sex: '男'
+        }
+        let {age, sex,name} = obj
+        console.log(name, age, sex)
+
+        const uname = 'hh'
+        const obj1 = {
+                uname: 'asjd',
+                age:10
+        }
+
+        // 解构时，uname与之前声明变量命名冲突，要进行改名
+        const {uname: username, age: userage} = obj1
+
+        // 数组对象解构
+        const arr = [
+            {
+                name: '张三',
+                age: 18,
+                sex: '男'
+            },
+            {
+                name: '李四',
+                age: 19,
+                sex: '男'
+            }   
+        ]
+        const [{name: name1, age: age1, sex: sex1}] = arr
+        console.log(name1, age1, sex1)
+        
+        const pig = [
+            {
+                name: '猪八戒',
+                age: 18,
+                family: {
+                  mother: '沙僧',
+                  father: '沙僧',
+                  brother: '沙僧',
+                },
+                sex: '男',
+            },
+            {
+                name: '沙僧',
+                age: 18,
+                family: {
+                  mother: '沙僧',
+                  father: '沙僧',
+                  brother: '沙僧',
+                },
+                sex: '男',
+            }
+        ]
+        const [{name:name2, age:age2, family: { mother, father, brother}, sex:sex2}] = pig
+        console.log(name2, age2, mother, father, brother, sex2)
+
+    </script>
+</body>
+</html>
