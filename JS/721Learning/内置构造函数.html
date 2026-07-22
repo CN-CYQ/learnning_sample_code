@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 构造函数  Object
+        const obj = {
+            name: '张三',
+            age: 18,
+            sex: '男'
+        }
+        // 获取对象的所有键，返回一个数组
+        const arr = Object.keys(obj)
+        console.log(arr) // ['name', 'age', 'sex']
+
+        // 获取对象所有属性值
+        const arr1 = Object.values(obj)
+        console.log(arr1) // ['张三', 18, '男']
+
+        // assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象
+        const obj2 =  {}
+        Object.assign(obj2, obj)
+        console.log(obj2) // {name: '张三', age: 18, sex: '男'}
+
+
+        /**
+         * 构造函数 Array
+         */
+        const arr2 = [1,2,3,4,5]
+        // reduce() 方法用于对数组中的每个元素执行一个由您提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。
+        const sum = arr2.reduce(function(pre, cur){
+            return pre + cur
+        }, 3)
+
+    </script>
+</body>
+</html>
