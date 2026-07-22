@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 实例对象：通过构造函数创建的对象实例
+        function Person(name, age, sex) {
+            this.name = name
+            this.age = age
+            this.sex = sex
+        }   
+        const p1 = new Person('张三', 18, '男') // 实例对象p1
+        p1.name = '李四' // 实例属性
+        // 实例方法
+        p1.sayName = ()=>{  
+            console.log(this.name) // 张三
+        }
+        p1.sayName() // 张三
+
+        /**
+         *  静态成员：通过构造函数添加的属性
+         * */
+        // 构造函数
+        function Student(name, age) {
+            // 省略实例成员
+            // 静态属性
+            this.school = '清华大学'
+            // 静态方法
+            this.saySchool = ()=>{
+                console.log(this.school) // 清华大学
+            }
+
+        }
+        // 静态属性
+        Student.school = '清华大学'
+        console.log(Student.school) // 清华大学
+        // 静态方法
+        Student.saySchool = ()=>{
+            // 静态方法中，this指向构造函数
+            console.log(this.school) // 清华大学
+        }
+        Student.saySchool() // 清华大学
+    </script>
+</body>
+</html>
