@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 原型
+        function Person(name, age, sex){
+            this.name = name
+            this.age = age
+            this.sex = sex
+            // this.sayName = function(){
+            //     console.log(this.name)
+            // }
+        }
+        // 通过原型添加方法，实现方法共享
+        Person.prototype.sayName = function(){
+            console.log(this.name)
+        }
+        const p1 = new Person('张三', 18, '男')
+        const p2 = new Person('李四', 19, '男')
+        p1.sayName()
+        p2.sayName()
+        console.log(p1.sayName() === p2.sayName())
+        console.log(p1.__proto__)
+    </script>
+</body>
+</html>
