@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person() {
+            this.eyes = 2
+            this.head = 1
+        }
+        const p = new Person()
+        console.log(Person.prototype.__proto__ == Object.prototype) // true
+        console.log(p instanceof Person) // true
+        console.log(p instanceof Object) // true
+        console.log(Person instanceof Object) // true
+        console.log(Person.prototype.__proto__ === Object.prototype) // true
+    </script>
+</body>
+</html>
