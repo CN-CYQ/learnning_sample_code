@@ -6,7 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
+    <script src="../../node_modules/lodash/lodash.min.js"></script>
+    <script >
         
         const obj = {
             name: '张三',
@@ -82,8 +83,26 @@
         console.log(obj) 
         console.log(obj2 === obj) // false
 
-        // lodash 库的 cloneDeepWith()方法实现深拷贝
-        
+        // 方式二：lodash 库的 cloneDeepWith()方法实现深拷贝
+        // const obj = {
+        //     name: '张三',
+        //     age: 18,
+        //     sex: '男',
+        //     address: {
+        //         city: '北京',
+        //         street: '东城区'
+        //     },
+        //     hobby: ['篮球', '足球']
+        // }
+        const obj3 = _.cloneDeep(obj)
+        console.log(obj3) 
+        console.log(obj3 === obj) // false
+
+        // 方法三： JSON.parse(JSON.stringify(obj)) 实现深拷贝
+        const obj4 = JSON.parse(JSON.stringify(obj))
+        console.log(obj4) 
+        console.log(obj4 === obj) // false
+
     </script>
 </body>
 </html>
