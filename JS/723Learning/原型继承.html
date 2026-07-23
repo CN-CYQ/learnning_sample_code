@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 抽取共性  公共部分放到原型对象中
+        // 构造函数 new出来的对象不一样
+        function Person() {
+            this.eyes = 2
+            this.head = 1
+        }
+
+        // 女人
+        function Woman() {
+
+        } 
+        // 女人通过 原型 继承 公共对象
+        Woman.prototype = new Person()
+        // 女人可以生孩子
+        Woman.prototype.baby = function(){
+            console.log('宝贝')   
+        }
+
+        // 此时女人的prototype 完全被覆盖，丢失constructor属性
+        // 指回去
+        Woman.prototype.constructor = Woman
+
+        // 男
+        function Man() {
+
+        }
+        // 继承女人的属性和方法
+        Man.prototype = new Person()
+        console.log(Woman.prototype)
+        console.log(Man.prototype) // Woman.prototype
+    </script>
+</body>
+</html>
