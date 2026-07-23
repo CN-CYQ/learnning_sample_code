@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        const obj = {
+            name: '张三',
+            age: 18,
+            sex: '男'
+        }
+
+        // 浅拷贝
+        const o = {...obj}
+        console.log(o) // {name: '张三', age: 18, sex: '男'}
+        console.log(o === obj) // false
+        o.age = 24
+        console.log(o) // {name: '张三', age: 24, sex: '男'}
+        console.log(obj) // {name: '张三', age: 18, sex: '男'}
+
+        /**
+         * 拷贝数组
+         * */
+        
+        const arr = [1,2,3,4,5]
+        const arr2 = [...arr]
+        const arr3 = Array.prototype.concat(arr)
+        console.log(arr2) // [1, 2, 3, 4, 5]
+        console.log(arr3) // [1, 2, 3, 4, 5]
+        console.log(arr2) // false
+        console.log(arr2 === arr3) // false
+        
+
+        // 深拷贝
+        
+        const obj2 = JSON.parse(JSON.stringify(obj))
+        console.log(obj2) // {name: '张三', age: 18, sex: '男'}
+        console.log(obj2 === obj) // false
+    </script>
+</body>
+</html>
