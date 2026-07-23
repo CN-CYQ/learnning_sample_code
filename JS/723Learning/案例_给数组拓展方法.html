@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+        let arr = [1,2,3,4,5]
+        // 原型给数组拓展方法
+        Array.prototype.max = function(){
+            // 构造函数和原型中的 this 都指向实例对象
+            return Math.max(...this)
+        }
+        //求和方法
+        Array.prototype.sum = ()=> this.reduce((pre, cur)=> pre + cur, 0)
+        console.log(arr.max()) // 5
+        console.log(arr.sum()) // 15
+   </script> 
+</body>
+</html>
