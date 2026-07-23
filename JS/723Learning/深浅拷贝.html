@@ -11,7 +11,13 @@
         const obj = {
             name: '张三',
             age: 18,
-            sex: '男'
+            sex: '男',
+            address: {
+                city: '北京',
+                street: '东城区'
+            },
+            hobby: ['篮球', '足球']
+            
         }
 
         // 浅拷贝
@@ -35,11 +41,49 @@
         console.log(arr2 === arr3) // false
         
 
-        // 深拷贝
-        
-        const obj2 = JSON.parse(JSON.stringify(obj))
-        console.log(obj2) // {name: '张三', age: 18, sex: '男'}
+        /**
+         * 深拷贝
+         * */
+
+        // 递归函数
+        let i = 0;
+        function fn(){
+            if(i > 10) return
+            i++;
+            console.log(i)
+            fn() 
+        }
+        fn()
+
+        // 递归案例 利用递归函数实现 setTimeout 模拟 setinterval 效果
+        // function fn2(){
+        //     // if(i > 15) return
+        //     i++;
+        //     console.log(i)
+        //     setTimeout(fn2, 1000)
+        // }
+        // fn2()
+
+        // 方法一： 递归函数实现深拷贝
+        function deepClone(obj){
+            if(typeof obj !== 'object' || obj === null) return obj
+            const newObj = Array.isArray(obj) ? [] : {}
+            for(let key in obj){
+                // key 属性名 obj[key] 属性值
+                // newObj[key] === obj[key]
+                newObj[key] = deepClone(obj[key])
+            }
+            return newObj
+        }
+        const obj2 = deepClone(obj)
+        obj2.address.city = '上海'
+        obj2.hobby[0] = '跑步'
+        console.log(obj2) 
+        console.log(obj) 
         console.log(obj2 === obj) // false
+
+        // lodash 库的 cloneDeepWith()方法实现深拷贝
+        
     </script>
 </body>
 </html>
