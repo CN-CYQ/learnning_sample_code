@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击我</button>
+    <script>
+        // call 改变
+        const obj = {
+            uname: '张三'
+        }
+        function fn(x,y) {
+            console.log(x, y)
+            console.log(this)
+        }
+        // 1.调用函数
+        // 2.call改变this指向
+        // fn.call(obj,'hhhh', 3)
+
+        function fn2(x, ...arr) {
+            console.log(Math.max(x,...arr))
+            console.log(this)
+        }
+        fn2.apply(obj, [1, 4,6,8,3,2,6,98,2,1,534,4,23,52,1])
+        // 或直接调用 Max
+        const arr2 = [4,6,8,3,2,6,98,2,1,53,4,23,52,1]
+        const max = Math.max.apply(Math,arr2)
+        console.log(max)
+
+        /**
+         * bind() 方法改变this指向
+         * */
+        function fn3(){
+            console.log(this)
+        }
+        const ff = fn3.bind(obj,1)
+        // ff()
+        document.getElementById('btn').addEventListener('click', function(){
+            console.log(this)
+            this.disabled = true
+            
+            // 用箭头函数改变this指向
+            // setTimeout(() => {
+            //     this.disabled = false
+            // }, 1000);
+            // 用bind改变改变this指向
+            setTimeout(function() {
+                this.disabled = false
+            }.bind(this), 1000);
+
+        })
+
+
+
+
+
+
+        
+    </script>
+</body>
+</html>
