@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button></button>
+    <script>
+        /**
+         * 都指向的window对象 window
+         * */
+        console.log(this) // window
+        function fn(){
+            console.log(this) // window
+        }
+        fn()
+        setTimeout(function(){
+            console.log(this) // window
+        }, 1000)
+        
+        document.querySelector('button').addEventListener('click', function(){
+            console.log(this) // button
+        })
+        const obj = {
+            hobit: function(){
+                console.log(this)
+            }
+        }
+        obj.hobit() // obj
+
+        /**
+         * 箭头函数的 this
+         * */
+        // 箭头函数的 this 指向的是定义时的 this，而不是调用时的 this
+        const btn = document.querySelector('button')
+        // 这里 this 指向的是 window 对象
+        btn.addEventListener('click', () =>{
+            console.log(this) // window
+        })
+        // 这里 this 指向的是 button 元素
+        btn.addEventListener('click', function() {  
+            console.log(this) // button
+        })
+
+        function Person(){
+
+        }
+        // 原型对象上添加了箭头函数
+        Person.prototype.say = () =>{
+            console.log(this) // window 
+        }
+        Person.prototype.sayName = function(){
+            console.log(this) // p
+        }
+        const p = new Person()
+        p.say() // window
+        p.sayName() // p
+
+    </script>
+</body>
+</html>
