@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <script>
+        // throw 抛出异常
+        function fn(x,y){
+            if(!x || !y) {
+                // throw '参数不能为空'
+                throw new Error('参数不能为空')
+            }
+            return x + y
+        }
+        // console.log(fn())
+
+        // try catch 捕获异常
+        function fn2(){
+            try {
+                // 可能发生异常的代码
+                const p = document.querySelector('.p')
+                p.innerHTML = 'hello world'
+            } catch (error) {
+                // console.log(error)
+                throw error
+            } finally {
+                console.log('finally')
+            }
+        }
+        fn2()
+
+        // debugger 断点调试
+        const arr = [1, 2, 4]
+        const newArr = arr.map((item, index)=>{
+                debugger
+                console.log(item)
+                console.log(index)
+                return item
+        })
+    </script>
+</body>
+</html>
