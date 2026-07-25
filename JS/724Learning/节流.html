@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script src="../../node_modules/lodash/lodash.js"></script>
+    <script>
+        const box = document.querySelector('.box')
+        let timer = 0;
+        box.innerHTML = timer
+        function mousemove() {
+            box.innerHTML = timer++
+        }
+        // Loadash库的throttle方法实现节流
+        // const throttleMove = _.throttle(mousemove, 500)
+        // box.addEventListener('mousemove',throttleMove)
+
+        function throttle(fn, t) {
+            let timer = null
+            return function () {
+                if (!timer) {
+                    timer = setTimeout(function () {
+                        fn()
+                        timer = null
+                    }, t)
+                }
+            }
+        }
+        box.addEventListener('mousemove', throttle(mousemove, 1000))
+        // 为什么清除定时器要用null，而不是clearTimeout？
+        // 因为clearTimeout会清除定时器，但是定时器的回调函数还会执行，导致内存泄漏
+    </script>
+</body>
+
+</html>
