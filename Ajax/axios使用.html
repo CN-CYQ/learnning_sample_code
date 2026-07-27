@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .selected::selection{
+            color: rgb(0, 119, 255);
+            background-color: rgb(255, 147, 255);
+            /* background-image: linear-gradient(to right, red, yellow); */
+        }
+    </style>
+</head>
+<body>
+    <p class="title"></p>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let userId = [], title = [], body = [], id = [];
+        let titleElement = document.querySelector('.title');
+        axios({
+            method: 'get',
+            url: 'https://jsonplaceholder.typicode.com/posts'
+        }).then(res => {
+            if(res.status === 200){
+                // let [{userId, title, body, id}]= res.data;
+                res.data.map(item => {
+                    userId.push(item.userId);
+                    title.push(item.title);
+                    body.push(item.body);
+                    id.push(item.id);
+                })
+                titleElement.innerHTML = title.join('<br>');
+            }
+            console.log(res);
+        }).catch(err => {
+            console.error('请求失败:', err);
+        })
+         // 文字选中的颜色为红色
+        titleElement.classList.add('selected');
+        titleElement.addEventListener('mouseup', (e) => {
+            // 获取选中的文本
+            const selection = window.getSelection();
+            const selectedText = selection.toString();
+            // 过滤空格与空内容
+            if (selectedText && selectedText.trim() !== '') {
+                console.log('选中的文字:', selectedText);
+            }
+        })
+        console.log( title );
+    </script>
+</body>
+</html>

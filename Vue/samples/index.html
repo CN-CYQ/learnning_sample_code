@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Sample</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="text/javascript">
+    const { createApp, ref, onMounted } = Vue
+
+    const App = {
+      template: `
+        <div ref="divRef">Hello Vue!</div>
+      `,
+      setup() {
+        const divRef = ref(null)
+
+        onMounted(() => {
+          console.log(divRef.value)
+        })
+
+        return {
+          divRef
+        }
+      }
+    }
+
+    createApp(App).mount('#app')
+  </script>
+</body>
+</html>
