@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+         axios({ 
+            url: 'https://hmajax.itheima.net/api/register',
+            method: 'post',
+            data: {
+                username: 'a900990dmin11',
+                password: '123456'
+            }
+        }).then(res => {
+            // console.log(res);
+            if(res.data.code === 10000){
+                console.log('注册成功');
+                console.log(res.data.data);
+            }else{
+                throw new Error(res.data.message);
+            }
+        }).catch(err => {
+            console.error('请求失败:', err);
+        })
+    </script>
+</body>
+</html>
