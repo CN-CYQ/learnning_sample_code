@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .selected::selection{
+            color: rgb(0, 119, 255);
+            background-color: rgb(255, 147, 255);
+            /* background-image: linear-gradient(to right, red, yellow); */
+        }
+    </style>
+</head>
+<body>
+    <p class="title"></p>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let userId = [], title = [], body = [], id = [];
+        let titleElement = document.querySelector('.title');
+        axios({
+            method: 'get',
+            url: 'https://hmajax.itheima.net/api/city',
+            // 直接拼接
+            // url: 'https://hmajax.itheima.net/api/city?pname=湖北省',
+            params: {
+                pname: '湖北省'
+            }
+        }).then(res => {
+            if(res.status === 200){
+               console.log(res.data);
+            }
+            console.log(res);
+        }).catch(err => {
+            console.error('请求失败:', err);
+        })
+        
+    </script>
+</body>
+</html>
