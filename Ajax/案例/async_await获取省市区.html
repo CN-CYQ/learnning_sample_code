@@ -6,18 +6,24 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="province"></div>
+    <div class="city"></div>
+    <div class="area"></div>
+
     <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         async function getProvince(){
             const province = await axios.get('http://hmajax.itheima.net/api/province')
             const pname = province.data.list[0]
-            const city = await axios.get(`http://hmajax.itheima.net/api/city?pid=${pname}`)
+            document.querySelector('.province').innerHTML = pname
+            const city = await axios({url: 'http://hmajax.itheima.net/api/city', params: { pname }})
             const cname = city.data.list[0] 
-            const area = await axios.get(`http://hmajax.itheima.net/api/area?pid=${cname}`)
-            console.log(area.data.list);
-            return area.data.list
+            document.querySelector('.city').innerHTML = cname
+            const area = await axios({url: 'http://hmajax.itheima.net/api/area', params: {pname, cname }})
+            document.querySelector('.area').innerHTML = area.data.list[0]
+            // return area.data.list
         }
-        
+        getProvince()
     </script>
 </body>
 </html>
