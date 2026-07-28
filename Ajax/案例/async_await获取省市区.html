@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function getProvince(){
+            const province = await axios.get('http://hmajax.itheima.net/api/province')
+            const pname = province.data.list[0]
+            const city = await axios.get(`http://hmajax.itheima.net/api/city?pid=${pname}`)
+            const cname = city.data.list[0] 
+            const area = await axios.get(`http://hmajax.itheima.net/api/area?pid=${cname}`)
+            console.log(area.data.list);
+            return area.data.list
+        }
+        
+    </script>
+</body>
+</html>

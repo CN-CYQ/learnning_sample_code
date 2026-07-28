@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="province"></div>
+    <div class="city"></div>
+    <div class="area"></div>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+        // 获取省份的axios请求
+        function myAxios(options){
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open(options.method || 'get',options.url + (options.params ? '?' + new URLSearchParams(options.params).toString() : ''));
+                xhr.addEventListener('loadend', () => {
+                    if(xhr.status === 200){
+                        // console.log(xhr.responseText);
+                        resolve(JSON.parse(xhr.responseText));
+                    }else{
+                        reject(new Error('请求失败'));
+                    }
+                })
+                xhr.send();
+            })
+        }
+
+        // 1. 获取默认第一个省份的名字
+        let pname = ''
+        myAxios({url: 'http://hmajax.itheima.net/api/province'}).then(result => {
+            pname = result.list[0]
+            document.querySelector('.province').innerHTML = pname
+            // 2. 获取默认第一个城市的名字
+            return axios({url: 'http://hmajax.itheima.net/api/city', params: { pname }})
+        }).then(result => {
+            const cname = result.data.list[0]
+            document.querySelector('.city' ).innerHTML = cname      
+            // 3. 获取款认第一个地区的名字
+            return axios({url: 'http://hmajax.itheima.net/api/area', params: { pname, cname }})
+        }).then(result => {
+            const aname = result.data.list[0]
+            document.querySelector('.area').innerHTML = aname
+        })
+            
+        // .catch(error => {
+        // console.dir(error)
+        // })
+    </script>
+</body>
+</html>
