@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="weather-list">
+        
+    </ul>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // 北京 110100
+        // 上海 310100
+        // 广州 440100
+        // 深圳 440300
+        const cityList = ['110100', '310100', '440100', '440300'];
+        let weatherList = [];
+        // 创建Promise数组
+        let promiseList = [];
+        // 遍历provinceList，创建Promise数组
+        function createPromiseList(){
+            for(let i = 0; i < cityList.length; i++){
+                promiseList.push(axios({
+                    url: 'http://hmajax.itheima.net/api/weather',
+                    params: { city: cityList[i] }
+                }))
+            }
+        }
+        createPromiseList()
+        const p = Promise.all(promiseList);
+
+        // 处理Promise数组的结果
+        p.then(res => {
+            weatherList = res.map(item=>{
+                const weather = {
+                    city: item.data.data.area,
+                    date: item.data.data.date,
+                    weather: item.data.data.weather,
+                }
+                return `<li>${weather.city}--${weather.date}--${weather.weather}</li>`
+            })
+            document.querySelector('.weather-list').innerHTML = weatherList.join('');
+
+        }).catch(err => {
+            console.log(err);
+        })
+    </script>
+</body>
+</html>

@@ -12,15 +12,21 @@
 
     <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+        // 1 定义async修饰函数
         async function getProvince(){
-            const province = await axios.get('http://hmajax.itheima.net/api/province')
-            const pname = province.data.list[0]
-            document.querySelector('.province').innerHTML = pname
-            const city = await axios({url: 'http://hmajax.itheima.net/api/city', params: { pname }})
-            const cname = city.data.list[0] 
-            document.querySelector('.city').innerHTML = cname
-            const area = await axios({url: 'http://hmajax.itheima.net/api/area', params: {pname, cname }})
-            document.querySelector('.area').innerHTML = area.data.list[0]
+            try{
+                // await 等待异步操作完成
+                const province = await axios.get('http://hmajax.itheima.net/api/province')
+                const pname = province.data.list[0]
+                document.querySelector('.province').innerHTML = pname
+                const city = await axios({url: 'http://hmajax.itheima.net/api/city', params: { pname }})
+                const cname = city.data.list[0] 
+                document.querySelector('.city').innerHTML = cname
+                const area = await axios({url: 'http://hmajax.itheima.net/api/area', params: {pname, cname }})
+                document.querySelector('.area').innerHTML = area.data.list[0]
+            } catch (error) {
+                console.log(error);
+            }
             // return area.data.list
         }
         getProvince()
