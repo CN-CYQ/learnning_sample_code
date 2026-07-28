@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="http://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        axios.interceptors.request.use(function(config) {
+            // 在发送请求之前做些什么
+            const token = localStorage.getItem('token');
+            token && (config.headers.Authorization = `Bearer ${token}`);
+            return config;
+        }, function(error) {
+            // 请求失败时的处理
+            return Promise.reject(error);
+        })
+    </script>
+</body>
+</html>
