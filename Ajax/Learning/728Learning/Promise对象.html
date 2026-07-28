@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1, 创建Promise对象
+        const p = new Promise((resolve,reject)=>{
+            // Promise 对象创建时，这里的代码都会执行
+            // 2, 执行异步操作
+            // 成功调用：resolve(值) 触发 then() 执行
+            // resolve('成功');
+            // 失败调用：reject(值) 触发 catch() 执行
+            reject(new Error('失败'));
+        })
+        // 3 接收结果
+        p.then(res=>{
+            console.log('成功',res);
+        }).catch(err=>{
+            console.log('失败',err);
+        })
+    </script>
+</body>
+</html>

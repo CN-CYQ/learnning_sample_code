@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const xhq = new XMLHttpRequest();
+        xhq.open('post', 'https://hmajax.itheima.net/api/uploadimg');
+        xhq.addEventListener('loadend', () => {
+            console.log(xhq.status);
+        })
+
+        // 设置请求头格式
+        xhq.setRequestHeader('Content-Type', 'multipart/form-data');
+        // 准备请求数据
+        const user = {
+            username: '张三',
+            password: '123456',
+        }
+        const userStr = JSON.stringify(user);
+        // 2, 发送请求
+        xhq.send(userStr);
+
+    </script>
+</body>
+</html>
