@@ -24,20 +24,20 @@
                 // 判断有 data 选项，携带请求体
                 if(options.data){
                     const jsonStr = JSON.stringify(options.data);
-                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.setRequestHeader('Content-Type', 'multipart/form-data');
                     xhr.send(jsonStr);
                 }else{
                     xhr.send();
                 }
-
+                // xhr.send();
             })
         }
 
         myAxios({
-            url: 'http://hmajax.itheima.net/api/province',
+            url: 'http://hmajax.itheima.net/api/weather',
             method: 'get',
             params: {
-                id: 1001,
+                city: 110100,
             },
             data: {
                 username: '张三',
@@ -45,6 +45,7 @@
             }
         })
         .then(res=>{
+            console.log(res);
             document.getElementById('province').innerHTML = res.list;
         }).catch(err=>{
             console.log(err);
