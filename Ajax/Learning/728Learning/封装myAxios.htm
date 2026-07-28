@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="province"></p>
+    <script>
+        function myAxios(options){
+            const xhq = new XMLHttpRequest();
+            // 设置请求头格式 默认get
+            xhq.open(options.method || 'get',options.url + (options.params ? '?' + new URLSearchParams(options.params).toString() : ''));
+
+            return new Promise((resolve, reject)=>{
+                xhq.addEventListener('loadend', () => {
+                    if(xhq.status === 200){
+                        resolve(JSON.parse(xhq.responseText));
+                    }else{
+                        reject(new Error('请求失败'));
+                    }
+                })
+                xhq.send(options.data || '');
+
+            })
+        }
+
+        myAxios({
+            url: 'http://hmajax.itheima.net/api/province',
+            method: 'get',
+            params: {
+                id: 1001,
+            },
+            data: {
+                username: '张三',
+                password: '123456',
+            }
+        })
+        .then(res=>{
+            document.getElementById('province').innerHTML = res.list;
+        }).catch(err=>{
+            console.log(err);
+        })
+    </script>
+</body>
+</html>
