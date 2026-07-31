@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">   <br>
+        <button @click="countNum1++">增加</button>
+        <button @click="countNum2++">增加</button>
+        <p>当前内容：{{ messageUpper }}</p>
+        <p>当前计数：{{ countSum }}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'hello vue',
+                countNum1: 0,
+                countNum2: 0,
+            },
+            computed:{
+                messageUpper(){
+                    return this.message.toUpperCase()
+                },
+                countSum(){
+                    return this.countNum1 + this.countNum2
+                }
+            }
+        })
+    </script>
+</body>
+</html>
