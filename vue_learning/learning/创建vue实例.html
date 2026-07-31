@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{message}}</h1>
+    </div>  
+    <!-- 引入开发版本的vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        // 一旦引入Vue.js，就有Vue构造函数了
+        const app = new Vue({
+            // 通过 el 挂载元素，配置选择器，指定 Vue 实例管理的范围是哪个元素
+            el:'#app',
+            // 通过 data 配置数据，指定 Vue 实例管理的数据
+            data:{
+                message:'hello vue'
+            }
+        })
+    </script>
+</body>
+</html>

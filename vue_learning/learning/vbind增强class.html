@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .style1{
+            background-color: red;
+        }
+        .style2{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" :class="{style1:true,style2:false}"></div>
+    <div class="box" :class="['style1','style2']"></div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script></script>
+</body>
+</html>
