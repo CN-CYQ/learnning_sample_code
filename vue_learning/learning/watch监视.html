@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <input type="text" v-model="message">   <br>
+        <button @click="obj.age++">{{obj.age}}</button>
+        <br>
+        <!-- {{ obj.name }} -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'hello vue',
+                obj: {
+                    name:'张三',
+                    age:40
+                }
+            },
+            watch:{
+                message(newVal,oldVal){
+                    console.log(newVal)
+                },
+                'obj.age'(newVal,oldVal){
+                    console.log(newVal,oldVal)
+                }
+                
+            }
+        })
+    </script>
+</body>
+</html>
