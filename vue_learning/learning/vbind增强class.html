@@ -14,9 +14,28 @@
     </style>
 </head>
 <body>
-    <div class="box" :class="{style1:true,style2:false}"></div>
-    <div class="box" :class="['style1','style2']"></div>
+    <div id="app">
+        <div :class="{style1:true,style2:false}">12</div>
+        <div :class="['style1','style2']">qwe</div>
+        <div :style="{ width:'100px' }">HHHH</div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
-    <script></script>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'hello vue',
+                isSingle:false,
+                gender:'男',
+                city:'北京',
+                selfDesc:''
+            },
+            computed:{
+                isSingleDesc(){
+                    return this.isSingle?'是':'否'
+                }
+            }
+        })
+    </script>
 </body>
 </html>
