@@ -23,8 +23,13 @@
                 countNum2: 0,
             },
             computed:{
-                messageUpper(){
-                    return this.message.toUpperCase()
+                messageUpper:{
+                    get(){
+                        return this.message.toUpperCase()
+                    },
+                    set(newVal){
+                        this.message = newVal.toUpperCase()
+                    }
                 },
                 countSum(){
                     return this.countNum1 + this.countNum2
